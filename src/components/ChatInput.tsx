@@ -39,7 +39,7 @@ export const ChatInput = forwardRef<TextInput, ChatInputProps>(
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 70 : 30}
       >
         <View style={styles.inputContainer}>
           <TextInput

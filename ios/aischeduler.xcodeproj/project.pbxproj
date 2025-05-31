@@ -9,27 +9,27 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6DC0C2F9668ED14CF923BFF7 /* libPods-aischeduler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BDC13B8D5712165FF1AAC0 /* libPods-aischeduler.a */; };
+		753CCBB3C250E1A965656638 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B94EDA36B03CA0CEF7A22E1B /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		D0B6DDF76DA82101D3671BC8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EB511313E1C9317E65609D2E /* PrivacyInfo.xcprivacy */; };
+		DB75A1C9E6C0A257AC984BE5 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A85C97D6E4F7885972A5E /* ExpoModulesProvider.swift */; };
+		EE2F902218D60B83D4D25655 /* libPods-aischeduler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5410EF824EF919BC92399EE6 /* libPods-aischeduler.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F78A0724B61CB0251C532000 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9628B000B287A41FC3E2FB11 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* aischeduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aischeduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = aischeduler/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = aischeduler/Info.plist; sourceTree = "<group>"; };
-		9628B000B287A41FC3E2FB11 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-aischeduler/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		99D38117D54012261FFE9B6B /* Pods-aischeduler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aischeduler.debug.xcconfig"; path = "Target Support Files/Pods-aischeduler/Pods-aischeduler.debug.xcconfig"; sourceTree = "<group>"; };
+		5410EF824EF919BC92399EE6 /* libPods-aischeduler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aischeduler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74A751E408EB59D4B2111A7B /* Pods-aischeduler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aischeduler.release.xcconfig"; path = "Target Support Files/Pods-aischeduler/Pods-aischeduler.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = aischeduler/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B44A85C97D6E4F7885972A5E /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-aischeduler/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		B94EDA36B03CA0CEF7A22E1B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = aischeduler/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		E3BDC13B8D5712165FF1AAC0 /* libPods-aischeduler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aischeduler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB511313E1C9317E65609D2E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = aischeduler/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		E1AC9F23E55A8DF2A38CCFC2 /* Pods-aischeduler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aischeduler.debug.xcconfig"; path = "Target Support Files/Pods-aischeduler/Pods-aischeduler.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = aischeduler/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* aischeduler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "aischeduler-Bridging-Header.h"; path = "aischeduler/aischeduler-Bridging-Header.h"; sourceTree = "<group>"; };
-		FD3C5176EB8C9B48497D64F9 /* Pods-aischeduler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aischeduler.release.xcconfig"; path = "Target Support Files/Pods-aischeduler/Pods-aischeduler.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DC0C2F9668ED14CF923BFF7 /* libPods-aischeduler.a in Frameworks */,
+				EE2F902218D60B83D4D25655 /* libPods-aischeduler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,18 +53,36 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				EB511313E1C9317E65609D2E /* PrivacyInfo.xcprivacy */,
+				B94EDA36B03CA0CEF7A22E1B /* PrivacyInfo.xcprivacy */,
 			);
 			name = aischeduler;
+			sourceTree = "<group>";
+		};
+		29107929D0067829A369C90E /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				F8446708946FD82CA0E813AF /* aischeduler */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				E3BDC13B8D5712165FF1AAC0 /* libPods-aischeduler.a */,
+				5410EF824EF919BC92399EE6 /* libPods-aischeduler.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5A1A34A41B480D5814B14079 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1AC9F23E55A8DF2A38CCFC2 /* Pods-aischeduler.debug.xcconfig */,
+				74A751E408EB59D4B2111A7B /* Pods-aischeduler.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -81,8 +99,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				92532AD01F1A9DD9553408EF /* Pods */,
-				F57B8F49173290F7827D1C5B /* ExpoModulesProviders */,
+				5A1A34A41B480D5814B14079 /* Pods */,
+				29107929D0067829A369C90E /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -97,23 +115,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		92532AD01F1A9DD9553408EF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				99D38117D54012261FFE9B6B /* Pods-aischeduler.debug.xcconfig */,
-				FD3C5176EB8C9B48497D64F9 /* Pods-aischeduler.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		9F96067D15733BB7D595654A /* aischeduler */ = {
-			isa = PBXGroup;
-			children = (
-				9628B000B287A41FC3E2FB11 /* ExpoModulesProvider.swift */,
-			);
-			name = aischeduler;
-			sourceTree = "<group>";
-		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,12 +124,12 @@
 			path = aischeduler/Supporting;
 			sourceTree = "<group>";
 		};
-		F57B8F49173290F7827D1C5B /* ExpoModulesProviders */ = {
+		F8446708946FD82CA0E813AF /* aischeduler */ = {
 			isa = PBXGroup;
 			children = (
-				9F96067D15733BB7D595654A /* aischeduler */,
+				B44A85C97D6E4F7885972A5E /* ExpoModulesProvider.swift */,
 			);
-			name = ExpoModulesProviders;
+			name = aischeduler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "aischeduler" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				7244F508C307B933933A04F3 /* [Expo] Configure project */,
+				89B6960E7DBE821BA8454D26 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				775F17F74B787BA202C91509 /* [CP] Embed Pods Frameworks */,
+				52801476BE124E66E750A749 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				D0B6DDF76DA82101D3671BC8 /* PrivacyInfo.xcprivacy in Resources */,
+				753CCBB3C250E1A965656638 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,26 +240,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7244F508C307B933933A04F3 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-aischeduler/expo-configure-project.sh\"\n";
-		};
-		775F17F74B787BA202C91509 /* [CP] Embed Pods Frameworks */ = {
+		52801476BE124E66E750A749 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -310,6 +292,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aischeduler/Pods-aischeduler-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		89B6960E7DBE821BA8454D26 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-aischeduler/expo-configure-project.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -318,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				F78A0724B61CB0251C532000 /* ExpoModulesProvider.swift in Sources */,
+				DB75A1C9E6C0A257AC984BE5 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,13 +328,12 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99D38117D54012261FFE9B6B /* Pods-aischeduler.debug.xcconfig */;
+			baseConfigurationReference = E1AC9F23E55A8DF2A38CCFC2 /* Pods-aischeduler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = aischeduler/aischeduler.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A594AWY252;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -353,7 +353,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parfenovx1.ai-scheduler";
-				PRODUCT_NAME = "aischeduler";
+				PRODUCT_NAME = aischeduler;
 				SWIFT_OBJC_BRIDGING_HEADER = "aischeduler/aischeduler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -364,13 +364,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD3C5176EB8C9B48497D64F9 /* Pods-aischeduler.release.xcconfig */;
+			baseConfigurationReference = 74A751E408EB59D4B2111A7B /* Pods-aischeduler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = aischeduler/aischeduler.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A594AWY252;
 				INFOPLIST_FILE = aischeduler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -385,7 +384,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parfenovx1.ai-scheduler";
-				PRODUCT_NAME = "aischeduler";
+				PRODUCT_NAME = aischeduler;
 				SWIFT_OBJC_BRIDGING_HEADER = "aischeduler/aischeduler-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +447,10 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -503,7 +505,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
