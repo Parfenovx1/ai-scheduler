@@ -7,10 +7,10 @@ import {
   Alert,
 } from "react-native";
 import { askAI } from "../ai/aiService";
-import { ChatHeader } from "./ChatHeader";
 import { ChatInput } from "./ChatInput";
 import { MessageList } from "./MessagesList";
 import { requestCalendarPermissions } from "../calendar/calendarService";
+import { useChat } from "../context/ChatContext";
 
 export interface MessageType {
   id: string;
@@ -25,10 +25,11 @@ export interface ChatInputRef extends TextInput {
 
 export const Chat = () => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<MessageType[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<ChatInputRef>(null);
   const [hasCalendarPermission, setHasCalendarPermission] = useState(false);
+
+  const { messages, setMessages } = useChat();
 
   useEffect(() => {
     const checkPermissions = async () => {
@@ -132,11 +133,6 @@ export const Chat = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ChatHeader
-        title="AI Ассистент"
-        showClearButton={messages.length > 0}
-        onClearChat={clearChat}
-      />
 
       <MessageList messages={messages} isTyping={isTyping} />
 

@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  SafeAreaView,
-  Platform,
-  Image,
-  Animated,
-} from "react-native";
-import { Chat } from "./src/components/Chat";
-import * as SplashScreen from "expo-splash-screen";
+import React, { useEffect, useState } from 'react';
+import { View, StatusBar, Animated, StyleSheet, Image } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import AppNavigator from './src/navigation/AppNavigator';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,15 +11,15 @@ export default function App() {
   const fadeAnim = new Animated.Value(1);
 
   useEffect(() => {
-    async function prepare() {
+    const prepare = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (e) {
         console.warn(e);
       } finally {
         setAppIsReady(true);
       }
-    }
+    };
 
     prepare();
   }, []);
@@ -50,40 +42,22 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" backgroundColor="#fff" />
         <Animated.View style={[styles.splashContainer, { opacity: fadeAnim }]}>
-          <Image
-            source={require("./assets/splash-icon.png")}
-            style={styles.splashImage}
-            resizeMode="contain"
-          />
+          <Image source={require('./assets/splash-icon.png')} style={styles.splashImage} resizeMode="contain" />
         </Animated.View>
       </View>
     );
   }
 
-  return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <SafeAreaView style={styles.safeArea}>
-        <Chat />
-      </SafeAreaView>
-    </View>
-  );
+  return <AppNavigator />;
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  safeArea: {
-    flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
+  container: { flex: 1, backgroundColor: '#fff' },
   splashContainer: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   splashImage: {
     width: 200,
