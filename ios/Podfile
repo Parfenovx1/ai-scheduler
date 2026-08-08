@@ -17,7 +17,11 @@ target 'aischeduler' do
   use_expo_modules!
 
   if ENV['EXPO_USE_COMMUNITY_AUTOLINKING'] == '1'
-    config_command = ['node', '-e', "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"];
+    config_command = [
+      'node',
+      '-e',
+      "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"
+    ]
   else
     config_command = [
       'npx',
@@ -50,14 +54,35 @@ target 'aischeduler' do
       :ccache_enabled => podfile_properties['apple.ccacheEnabled'] == 'true',
     )
 
-    # This is necessary for Xcode 14, because it signs resource bundles by default
-    # when building for devices.
+    # Xcode 14+ resource bundle signing workaround
     installer.target_installation_results.pod_target_installation_results
       .each do |pod_name, target_installation_result|
       target_installation_result.resource_bundle_targets.each do |resource_bundle_target|
         resource_bundle_target.build_configurations.each do |config|
           config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
         end
+      end
+    end
+
+    # Xcode 26 / Apple Clang workaround for fmt
+    fmt_base = File.join(
+      installer.sandbox.root,
+      'fmt',
+      'include',
+      'fmt',
+      'base.h'
+    )
+
+    if File.exist?(fmt_base)
+      content = File.read(fmt_base)
+
+      patched = content.gsub(
+        /^(#elif defined\(__cpp_consteval\)\n#  define FMT_USE_CONSTEVAL) 1/,
+        "// Xcode 26 workaround\n\\1 0"
+      )
+
+      if patched != content
+        File.write(fmt_base, patched)
       end
     end
   end
