@@ -1,5 +1,6 @@
 import { Platform, PermissionsAndroid } from "react-native";
 import * as Calendar from "expo-calendar";
+import { CALENDAR_STRINGS } from "../constants/calendarStrings";
 
 export const requestCalendarPermissions = async (): Promise<boolean> => {
   if (Platform.OS === "android") {
@@ -44,13 +45,13 @@ const addEventToCalendar = async (
     const hasPermission = await requestCalendarPermissions();
 
     if (!hasPermission) {
-      throw new Error("Нет разрешения на доступ к календарю");
+      throw new Error(CALENDAR_STRINGS.noPermissionError);
     }
 
     const calendarId = await getDefaultCalendarId();
 
     if (!calendarId) {
-      throw new Error("Не удалось найти календарь");
+      throw new Error(CALENDAR_STRINGS.calendarNotFoundError);
     }
 
     const eventId = await Calendar.createEventAsync(calendarId, {
@@ -78,20 +79,24 @@ interface EventDetails {
 const parseEventFromText = (text: string): EventDetails | null => {
   try {
     let title = "";
-    if (text.includes("встречу с ")) {
-      const match = text.match(/встречу с\s+([^\d]+)(?:\s+на|в)/i);
-      title = match ? `Встреча с ${match[1].trim()}` : "Новая встреча";
+    const withMatch = text.match(/meeting with\s+([a-zA-Z\s]+?)(?:\s+(?:at|on|for)\b|$)/i);
+    if (withMatch) {
+      title = `${CALENDAR_STRINGS.meetingWithPrefix} ${withMatch[1].trim()}`;
     } else {
-      title = "Новая встреча";
+      title = CALENDAR_STRINGS.defaultEventTitle;
     }
 
-    const timeMatch = text.match(/(\d{1,2})[:\.\-]?(\d{0,2})/);
+    const timeMatch = text.match(/(\d{1,2})[:.\-]?(\d{0,2})\s*(am|pm)?/i);
     let hours = 12;
     let minutes = 0;
 
     if (timeMatch) {
       hours = parseInt(timeMatch[1]);
       minutes = timeMatch[2] ? parseInt(timeMatch[2]) : 0;
+
+      const meridiem = timeMatch[3]?.toLowerCase();
+      if (meridiem === "pm" && hours < 12) hours += 12;
+      if (meridiem === "am" && hours === 12) hours = 0;
     }
 
     const now = new Date();
@@ -110,10 +115,10 @@ const parseEventFromText = (text: string): EventDetails | null => {
     let duration = 60;
 
     const durationPatterns = [
-      /на (\d+) (минут|час[а-я]*)/i,
-      /длительностью (\d+) (минут|час[а-я]*)/i,
-      /продолжительностью (\d+) (минут|час[а-я]*)/i,
-      /(\d+) (минут|час[а-я]*)/i,
+      /for (\d+)\s*(minutes?|hours?)/i,
+      /lasting (\d+)\s*(minutes?|hours?)/i,
+      /duration of (\d+)\s*(minutes?|hours?)/i,
+      /(\d+)\s*(minutes?|hours?)/i,
     ];
 
     for (const pattern of durationPatterns) {
@@ -122,7 +127,7 @@ const parseEventFromText = (text: string): EventDetails | null => {
         const value = parseInt(match[1]);
         const unit = match[2].toLowerCase();
 
-        if (unit.startsWith("час")) {
+        if (unit.startsWith("hour")) {
           duration = value * 60;
         } else {
           duration = value;
@@ -144,20 +149,14 @@ const parseEventFromText = (text: string): EventDetails | null => {
 };
 
 export const isCalendarRequest = (message: string): boolean => {
-  const keywords = [
-    "добавь встречу",
-    "запланируй встречу",
-    "запиши встречу",
-    "создай встречу",
-    "добавь в календарь",
-    "запланируй в календаре",
-    "запиши в календарь",
-    "создай событие",
-    "добавь событие",
-  ];
-
   const lowerMessage = message.toLowerCase();
-  return keywords.some((keyword) => lowerMessage.includes(keyword));
+
+  const calendarActionPattern =
+    /\b(add|schedule|create|set up|book|arrange|plan)\b.{0,15}\b(meeting|event|appointment|call)\b/i;
+
+  const calendarNounPattern = /\b(add|put)\b.{0,15}\bcalendar\b/i;
+
+  return calendarActionPattern.test(lowerMessage) || calendarNounPattern.test(lowerMessage);
 };
 
 export const handleCalendarRequest = async (
@@ -166,7 +165,7 @@ export const handleCalendarRequest = async (
   const eventDetails = parseEventFromText(message);
 
   if (!eventDetails) {
-    return "Извините, я не смог понять детали события. Пожалуйста, укажите название, дату и время более точно.";
+    return CALENDAR_STRINGS.couldNotUnderstandEvent;
   }
 
   const { title, date, duration } = eventDetails;
@@ -178,7 +177,7 @@ export const handleCalendarRequest = async (
     title,
     date,
     endDate,
-    `Событие создано через AI ассистента`
+    CALENDAR_STRINGS.eventNotesDefault
   );
 
   if (eventId) {
@@ -188,8 +187,8 @@ export const handleCalendarRequest = async (
     });
     const dateString = date.toLocaleDateString();
 
-    return `✅ Я добавил "${title}" в ваш календарь на ${dateString} в ${timeString}. Продолжительность: ${duration} минут.`;
+    return CALENDAR_STRINGS.eventAddedSuccess(title, dateString, timeString, duration);
   } else {
-    return "Извините, не удалось добавить событие в календарь. Проверьте разрешения приложения и попробуйте снова.";
+    return CALENDAR_STRINGS.couldNotAddEvent;
   }
 };

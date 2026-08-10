@@ -1,23 +1,12 @@
+// ChatInput.tsx
 import { ArrowUp } from "lucide-react-native";
 import React, { forwardRef } from "react";
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Platform,
-  KeyboardAvoidingView,
-} from "react-native";
+import { View, TextInput, TouchableOpacity, StyleSheet, Platform } from "react-native";
+import Animated from "react-native-reanimated";
+import { useKeyboardMargin } from "../hooks/useKeyboardMargin";
 
 const SendIcon = ({ color }: { color: string }) => (
-  <View
-    style={{
-      width: 20,
-      height: 20,
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
+  <View style={{ width: 20, height: 20, justifyContent: "center", alignItems: "center" }}>
     <ArrowUp color={color} />
   </View>
 );
@@ -30,36 +19,29 @@ interface ChatInputProps {
 }
 
 export const ChatInput = forwardRef<TextInput, ChatInputProps>(
-  (
-    { value, onChangeText, onSend, placeholder = "Напиши сообщение..." },
-    ref
-  ) => {
+  ({ value, onChangeText, onSend, placeholder = "Write a message..." }, ref) => {
     const isDisabled = !value.trim();
+    const animatedMarginStyle = useKeyboardMargin();
 
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 70 : 30}
-      >
-        <View style={styles.inputContainer}>
-          <TextInput
-            ref={ref}
-            style={styles.input}
-            placeholder={placeholder}
-            value={value}
-            onChangeText={onChangeText}
-            multiline
-            maxLength={1000}
-          />
-          <TouchableOpacity
-            style={[styles.sendButton, isDisabled && styles.sendButtonDisabled]}
-            onPress={onSend}
-            disabled={isDisabled}
-          >
-            <SendIcon color={isDisabled ? "#A0A0A0" : "#fff"} />
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
+      <Animated.View style={[styles.inputContainer, animatedMarginStyle]}>
+        <TextInput
+          ref={ref}
+          style={styles.input}
+          placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          multiline
+          maxLength={1000}
+        />
+        <TouchableOpacity
+          style={[styles.sendButton, isDisabled && styles.sendButtonDisabled]}
+          onPress={onSend}
+          disabled={isDisabled}
+        >
+          <SendIcon color={isDisabled ? "#A0A0A0" : "#fff"} />
+        </TouchableOpacity>
+      </Animated.View>
     );
   }
 );

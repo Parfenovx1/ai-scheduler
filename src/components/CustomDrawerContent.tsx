@@ -5,12 +5,16 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerContentComponentProps,
 } from "@react-navigation/drawer";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useUser } from "../context/UserContext";
+import { useKeyboardMargin } from "../hooks/useKeyboardMargin";
 
 export default function CustomDrawerContent(
   props: DrawerContentComponentProps
@@ -18,6 +22,7 @@ export default function CustomDrawerContent(
   const { username, updateUsername } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [tempUsername, setTempUsername] = useState(username);
+  const animatedKeyboardStyle = useKeyboardMargin();
 
   const handleSave = () => {
     if (tempUsername.trim()) {
@@ -32,51 +37,76 @@ export default function CustomDrawerContent(
   };
 
   return (
-    <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1 }}>
-      <View style={{ flex: 1 }} />
-      <View style={styles.userSection}>
-        {isEditing ? (
-          <View style={styles.editContainer}>
-            <TextInput
-              style={styles.input}
-              value={tempUsername}
-              onChangeText={setTempUsername}
-              placeholder="Enter username"
-              autoFocus
-            />
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-                <Text style={styles.buttonText}>Save</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.cancelButton}
-                onPress={handleCancel}
-              >
-                <Text style={styles.cancelButtonText}>Cancel</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        ) : (
-          <>
-            <TouchableOpacity
-              style={styles.avatarCircle}
-              onPress={() => setIsEditing(true)}
+    <DrawerContentScrollView
+      {...props}
+      contentContainerStyle={styles.scrollContent}
+      style={styles.drawerBorder}
+      keyboardShouldPersistTaps="handled"
+    >
+      <View style={styles.spacer} />
+
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <Animated.View style={[styles.userSection, animatedKeyboardStyle]}>
+          {isEditing ? (
+            <Animated.View
+              entering={FadeIn.duration(200)}
+              exiting={FadeOut.duration(150)}
+              style={styles.editContainer}
             >
-              <Text style={styles.avatarText}>MP</Text>
-            </TouchableOpacity>
-            <Text style={styles.userName}>{username}</Text>
-          </>
-        )}
-      </View>
+              <TextInput
+                style={styles.input}
+                value={tempUsername}
+                onChangeText={setTempUsername}
+                placeholder="Enter username"
+                autoFocus
+              />
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+                  <Text style={styles.buttonText}>Save</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+                  <Text style={styles.cancelButtonText}>Cancel</Text>
+                </TouchableOpacity>
+              </View>
+            </Animated.View>
+          ) : (
+            <Animated.View
+              entering={FadeIn.duration(200)}
+              exiting={FadeOut.duration(150)}
+              style={styles.row}
+            >
+              <TouchableOpacity
+                style={styles.avatarCircle}
+                onPress={() => setIsEditing(true)}
+              >
+                <Text style={styles.avatarText}>MP</Text>
+              </TouchableOpacity>
+              <Text style={styles.userName}>{username}</Text>
+            </Animated.View>
+          )}
+        </Animated.View>
+      </KeyboardAvoidingView>
     </DrawerContentScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContent: {
+    flex: 1,
+  },
+  drawerBorder: {
+    borderRightWidth: StyleSheet.hairlineWidth,
+    borderRightColor: "#d0d0d0",
+  },
+  spacer: {
+    flex: 1,
+  },
   userSection: {
     padding: 20,
     borderTopWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#e0e0e0",
+  },
+  row: {
     flexDirection: "row",
     alignItems: "center",
   },

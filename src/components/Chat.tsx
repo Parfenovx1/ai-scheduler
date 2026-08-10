@@ -1,16 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   TextInput,
   Keyboard,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { askAI } from "../ai/aiService";
 import { ChatInput } from "./ChatInput";
 import { MessageList } from "./MessagesList";
 import { requestCalendarPermissions } from "../calendar/calendarService";
 import { useChat } from "../context/ChatContext";
+import { STRINGS } from "../constants/strings";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export interface MessageType {
   id: string;
@@ -38,9 +41,9 @@ export const Chat = () => {
 
       if (!granted) {
         Alert.alert(
-          "Требуется разрешение",
-          "Для добавления событий в календарь необходимо разрешение. Вы можете изменить это в настройках приложения.",
-          [{ text: "OK" }]
+          STRINGS.permissionRequiredTitle,
+          STRINGS.permissionRequiredMessage,
+          [{ text: STRINGS.ok }],
         );
       }
     };
@@ -68,10 +71,7 @@ export const Chat = () => {
     Keyboard.dismiss();
 
     try {
-      const isCalendarRequest =
-        /добавь|запланируй|запиши|создай.+встречу|событие|календар/i.test(
-          userMessage
-        );
+      const isCalendarRequest = STRINGS.calendarKeywordsRegex.test(userMessage);
 
       if (isCalendarRequest && !hasCalendarPermission) {
         const granted = await requestCalendarPermissions();
@@ -84,7 +84,7 @@ export const Chat = () => {
 
             const errorMessageObj = {
               id: `error-${Date.now()}`,
-              text: "Для добавления событий в календарь необходимо разрешение. Пожалуйста, предоставьте разрешение в настройках приложения.",
+              text: STRINGS.calendarPermissionDeniedMessage,
               isUser: false,
               timestamp: Date.now(),
             };
@@ -117,7 +117,7 @@ export const Chat = () => {
 
         const errorMessageObj = {
           id: `error-${Date.now()}`,
-          text: "Ошибка при обращении к AI",
+          text: STRINGS.genericErrorMessage,
           isUser: false,
           timestamp: Date.now(),
         };
@@ -132,17 +132,22 @@ export const Chat = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+      <KeyboardAvoidingView
+        style={styles.flexOne}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+      >
+        <MessageList messages={messages} isTyping={isTyping} />
 
-      <MessageList messages={messages} isTyping={isTyping} />
-
-      <ChatInput
-        ref={inputRef}
-        value={input}
-        onChangeText={setInput}
-        onSend={handleSend}
-        placeholder="Задайте вопрос или создайте событие..."
-      />
+        <ChatInput
+          ref={inputRef}
+          value={input}
+          onChangeText={setInput}
+          onSend={handleSend}
+          placeholder={STRINGS.chatInputPlaceholder}
+        />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -151,5 +156,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
+  },
+  flexOne: {
+    flex: 1,
   },
 });

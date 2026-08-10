@@ -1,13 +1,13 @@
+// EmptyChat.tsx
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { STRINGS } from "../constants/strings";
 
 interface EmptyChatProps {
   message?: string;
 }
 
-export const EmptyChat = ({
-  message = "Напиши что-нибудь, чтобы начать разговор",
-}: EmptyChatProps) => {
+export const EmptyChat = ({ message = STRINGS.emptyChatMessage }: EmptyChatProps) => {
   return (
     <View style={styles.emptyChat}>
       <Text style={styles.emptyChatText}>{message}</Text>
