@@ -127,12 +127,8 @@ export const Chat = () => {
     }
   };
 
-  const clearChat = () => {
-    setMessages([]);
-  };
-
   return (
-    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+    <SafeAreaView style={styles.container} edges={["left", "right", "bottom"]}>
       <KeyboardAvoidingView
         style={styles.flexOne}
         behavior={Platform.OS === "ios" ? "padding" : "height"}

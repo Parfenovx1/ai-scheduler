@@ -8,22 +8,13 @@ export default function ChatScreen() {
 
   useEffect(() => {
     setIsChatStarted(true);
-
     return () => setIsChatStarted(false);
   }, []);
-  
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <SafeAreaView
-        style={{
-          flex: 1,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        }}
-      >
-        <Chat />
-      </SafeAreaView>
+      <Chat />
     </View>
   );
 }
